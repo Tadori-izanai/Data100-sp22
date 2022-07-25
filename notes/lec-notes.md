@@ -1,13 +1,13 @@
 # Data 100: Principles and Techniques of Data Science
 
-    University of California, Berkeley
-    Instructors: Josh Hug
-    j.hug@berkeley.edu
-    Office Hours: TBD
-    https://ds100.org/sp22
-    Lecture: Tues/Thurs 3:30pm-5:00am 
-    Zoom link TBD
-    Author: Will Tholke
+> University of California, Berkeley
+Instructors: Josh Hug
+j.hug@berkeley.edu
+Office Hours: TBD
+https://ds100.org/sp22
+Lecture: Tues/Thurs 3:30pm-5:00am 
+Zoom link TBD
+Author: Will Tholke
 
 ## Table of Contents
 
@@ -207,6 +207,10 @@
   - [Lecture 25, 04/26/22 (Wk14): Guest Speaker: Amol Deshpande - Data Regulations](#lecture-25-042622-wk14-guest-speaker-amol-deshpande---data-regulations)
   - [Lecture 26, 04/28/22 (Wk14): Guest Speaker: Matei Zaharia - Parallel Data Analytics](#lecture-26-042822-wk14-guest-speaker-matei-zaharia---parallel-data-analytics)
 
+---
+
+<br><br>
+
 ## Lecture 1, 01/18/22 (Wk1): Course Overview
 
 ### Associated Reading
@@ -224,41 +228,42 @@ The following positive feedback loop is called the **data science lifecycle**:
 3) Conduct **exploratory data analysis** (EDA)
 4) Use *prediction* and *inference* to draw conclusions
 
+---
+
+<br><br>
+
 ## Lecture 2, 01/20/22 (Wk1): Data Sampling and Probability
 
 ### Censuses and Surveys
 
-In general, a **census** is "an official count or **survey** of a **population**, typically recording various details of individuals."
-
-A **survey** is defined as a set of questions, i.e. Decennial Census Questionnaires. Stat 152 (Sampling Surveys) goes into sampling in more detail.
-
-In the case of the Decennial Census, the high court rejected sampling, but why? It often minoritized the poor and those who voted Democratic.
+- In general, a **census** (人口普查) is "an official count or **survey** of a **population**, typically recording various details of individuals."
+- A **survey** is defined as a set of questions, i.e. Decennial Census Questionnaires. Stat 152 (Sampling Surveys) goes into sampling in more detail.
+- In the case of the Decennial Census, the high court rejected sampling, but why? It often minoritized the poor and those who voted Democratic.
 
 ### Sampling
 
-The **population** is the group you want to know something about whereas the **sampling frame** is the list from which the sample is drawn. 
+1. The **population** is the group you want to know something about whereas the **sampling frame** is the list from which the sample is drawn. 
+    - Note that *the sample is a subset of your sampling frame* but not your population. There may be individuals in the sample frame that are not in the population.
 
-- Note that *the sample is a subset of your sampling frame* but not your population. There may be individuals in the sample frame that are not in the population.
+2. A **sample** is a subset of the population often used to make inferences about that population.
+    - Chance error
+    - Bias: systematic error in one direction
 
-
-A **sample** is a subset of the population often used to make inferences about that population.
-
-- Chance error
-- Bias: systematic error in one direction
+<img src="lec-notes.assets/image-20220724150105993.png" alt="image-20220724150105993" style="zoom: 25%;" />
 
 ### Common Non-Random Samples
 
-**Convenience Sample:** whoever you can get ahold of; not a good idea for inference!
+- **Convenience Sample:** whoever you can get ahold of; not a good idea for inference!
 
-**Quota Sample:** first specify the desired breakdown of various subgroups, then reach those targets however you can
+- **Quota Sample:** (定额) first specify the desired breakdown of various subgroups, then reach those targets however you can
 
 ### Common Biases
 
-**Selection Bias:** systematically excluding/favoring certain groups
+- **Selection Bias:** systematically excluding/favoring certain groups
 
-**Response Bias:** people don't always respond untruthfully
+- **Response Bias:** people don't always respond untruthfully
 
-**Non-response Bias**: people don't always respond
+- **Non-response Bias**: people don't always respond
 
 ### The Literary Digest & The 1936 Election
 
@@ -272,33 +277,38 @@ A **probability** sample from a random sampling scheme has the following propert
 - must be able to provide the chance that any specified set of individuals will be in the sample
 - All individuals in the population need not have the same chance of being selected
 
-### Simple Random Sample
+### Simple Random Sample (SRS)
 
-Every subset of the same size has the same probability of being selected.
+- Every subset of the same size has the same probability of being selected.
+- （每一个、每两个、每三个、…… 抽中的概率相同）
 
 ### Approximation for sampling
 
-If the population is huge compared to the sample, then *random sampling with and without replacement are nearly equivalent*.
+- If the population is huge compared to the sample, then *random sampling with and without replacement are nearly equivalent*.
 
-### Binomial and Multinomial Probabilities
+<img src="lec-notes.assets/image-20220724155511631.png" alt="image-20220724155511631" style="zoom:25%;" />
+
+### Binomial and Multinomial Probabilities （二项式、多项式）
 
 **Binomial and multinomial probabilities arise when we:**
 
 - Sample at random with replacement
 - Sample a fixed number (n) times
 - Sample frmo a categorical distribution:
-  - If 2 categories (binomial):
+  - If 2 categories (**binomial**):
     - Bag of marbles: 60% blue, 40% not blue
-  - If >2 categories (multinomial):
+  - If >2 categories (**multinomial**):
     - Bag of marbles: 60% blue, 30% green, 10% red
 
 **Goal:** Count the number of each category that end up in our sample using `np.random.multinomial`
 
 For examples of binomial and multinomial probabilities, start reading from Slide 36 of the [Lecture 2 Slides](https://docs.google.com/presentation/d/15CbbMS0guv9CNJTTDP4h5T4hrNK8rJJ2cO1rmXo3H3Y/edit#slide=id.g10c5bf81273_0_46)!
 
+<img src="lec-notes.assets/image-20220724172422790.png" alt="image-20220724172422790" style="zoom:25%;" />
+
 ### Extra: Permutations and Combinations
 
-#### Permutations
+#### Permutations （排列）
 
 Given 5 people named A, B, C, D, & E...
 
@@ -322,7 +332,7 @@ The above case leads us to the general theorem for **permutations**, which holds
 
 - Having `n` objects and wanting to select `k` of them **in a certain order**, then the number of ways one can do this is `n! / (n - k)!`.
 
-#### Combinations
+#### Combinations （组合）
 
 Selecting three people from the set of 5 individuals {A, B, C, D, E} where **order does not matter**, we see that there are fewer selections. Compare the following:
 
@@ -347,6 +357,10 @@ The binomial coefficient is `(n k) = n! / (n - k)!k!`, read "n choose k".
 ( k )   ( n - k )
 ```
 Choosing k successes is equivalent to choosing n - k failures.
+
+---
+
+<br><br>
 
 ## Lecture 3, 01/25/22 (Wk2): Pandas I
 
